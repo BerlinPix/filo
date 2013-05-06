@@ -5,13 +5,13 @@ FILo is a lightweight and free plugin for the JavaScript framework jQuery for em
 
 ## Getting Started
 
-	<div class="filo" id="YOUR-FACEBOOK-ID"></div>
+	<div class="filo" id="**YOUR-FACEBOOK-ID**"></div>
 
 Adding a the first design template
 
-	<div class="filo template_1" id="DEINE-FACEBOOK-ID"></div>
+	<div class="filo **template_1**" id="YOUR-FACEBOOK-ID"></div>
 
-Adding the scripts, css fiels and stuff and you will get your first test:
+Adding the scripts, css files and stuff and you will get your first test:
 
 	<!DOCTYPE HTML>
 	<html>
@@ -23,7 +23,7 @@ Adding the scripts, css fiels and stuff and you will get your first test:
 			<script src="filo/filo.js" type="text/javascript" language="javascript"></script>
 		</head>
 		<body>
-			<div class="filo template_1" id="DEINE-FACEBOOK-ID"></div>
+			**<div class="filo template_1" id="YOUR-FACEBOOK-ID"></div>**
 		</body>
 	</html>
  
