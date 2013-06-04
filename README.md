@@ -26,6 +26,8 @@ Wrapping around the HTML5 structure, the scripts and css files:
 			<div class="filo template_1" id="YOUR-FACEBOOK-ID"></div>
 		</body>
 	</html>
+
+![Loading pictures from facebook to your own website] (http://berlinpix.com/tl_files/filo/img/from_facebook_to_website.jpg "Loading pictures from facebook to your own website")
  
 Copyright 2012, BerlinPix.com
 licensed under the LGPL license.
