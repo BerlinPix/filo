@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="../website/filo/filo_style.css">
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script type="text/javascript" src="../website/filo/filo.js"></script>
+		<script>
+
+		jQuery(document).ready(function ($) {
+
+			var options = {
+				template:1,
+				maxCount:3,
+				excluded: ['profile pictures','cover photos'],
+				//order: 'reverse', // reihenfole der fotos im album
+				load: function () {
+					var albums = $(".filo .album").toArray(); //alle alben holen
+					$(".filo .album").remove(); //alte reihenfole entfernen
+					$(".filo").prepend(albums.reverse()); //reihenfolge umkehren und neu hinzufuegen
+					$(".filo .album").css("visibility", "visible"); //alben wieder sichtbar machen
+				}
+			}
+			$.filo("Kontrastspiel", options);
+		});
+
+		</script>
+		<style type="text/css">
+
+		.filo .album {
+			visibility: hidden;
+		}
+
+		</style>
+	</head>
+	<body>
+		<h1>FILo Example: reverse order of the albums</h1>		
+	</body>
+</html>
