@@ -29,6 +29,6 @@ Wrapping around the HTML5 structure, the scripts and css files:
 
 ![Loading pictures from facebook to your own website] (http://berlinpix.com/tl_files/filo/img/from_facebook_to_website.jpg "Loading pictures from facebook to your own website")
  
-Copyright 2012, BerlinPix.com
+Copyright 2012, [BerlinPix.com] (http://www.berlinpix.com "BerlinPix Website")
 licensed under the LGPL license.
 
