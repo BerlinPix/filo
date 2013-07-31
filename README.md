@@ -30,7 +30,10 @@ Wrapping around the HTML5 structure, the scripts and css files:
 ## Using the generator
 
 For a quick start you can use the generator to see how FIlo works and to get the HTML or JavaScript code for your website.
-[Go to the generator] (http://berlinpix.com/filo/generator.php "FIlo generator")
+[Go to the generator] (http://berlinpix.com/filo/generator.php "FILo generator")
+
+For a quick start you can use the generator to see how FIlo works and to get the HTML or JavaScript code for your website.
+[![Loading pictures from facebook to your own website] (http://berlinpix.com/tl_files/filo/img/from_facebook_to_website.jpg "Loading pictures from facebook to your own website")] (http://berlinpix.com/filo/generator.php "FILo generator")
 
 ![Loading pictures from facebook to your own website] (http://berlinpix.com/tl_files/filo/img/from_facebook_to_website.jpg "Loading pictures from facebook to your own website")
  
