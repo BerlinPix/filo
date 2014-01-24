@@ -4,17 +4,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Forward the user - Your own Website using FILo - the Facebook jQuery Plugin</title>
 <link rel="stylesheet" href="../filo_style.css" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" language="javascript" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" language="javascript" type="text/javascript"></script>
 <script src="../filo.js" type="text/javascript" language="javascript"></script>
+<script>
+jQuery(function ($) {
+
+	var options = {
+		template: 1,
+		href: 'filo_href_forward.html',
+		newWindow: true
+	};
+	$.filo('Kontrastspiel', options);
+});
+
+
+</script>
 </head>
 <body>
 <h1>Kontrastspiel</h1>
-<p>This is an example for a HTML solution of forwarding the user to a new page. It's using the GET method to send the name of the album and the profile.</p>
-<div class="filo template_1" id="Kontrastspiel" href="filo_href_forward.html" method="GET">
+<!-- <p>This is an example for a HTML solution of forwarding the user to a new page. It's using the GET method to send the name of the album and the profile.</p>
+<div class="filo template_1" id="Kontrastspiel" href="filo_href_forward.html" method="GET" newWindow="true">
 	<div class="excluded" id="cover photos"></div>
 	<div class="excluded" id="profile pictures"></div>
 	<div class="excluded" id="untitled album"></div>
-</div>
+</div> -->
+<div id="photos"></div>
 <footer>
  <small>© Copyright 2012, <a href="http://www.berlinpix.com">berlinpix.com</a></small>
 </footer>

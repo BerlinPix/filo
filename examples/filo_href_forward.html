@@ -4,24 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Forward the user - Your own Website using FILo - the Facebook jQuery Plugin</title>
 <link rel="stylesheet" href="../filo_style.css" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" language="javascript" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" language="javascript" type="text/javascript"></script>
 <script src="../filo.js" type="text/javascript" language="javascript"></script>
 <script>
 jQuery(document).ready(function ($) {
-
 	//get the url params
 	var params = $.filo.getUrlParams();	
-
-	if (typeof params['profile'] == 'undefined') {
-		alert("no profile is given, check the GET parameters");
-		return;
-	}
-	if (typeof params['album'] == 'undefined') {
-		alert("no album is given, check the GET parameters");
-		return;
-	}
-		
-
 	//set up the options
 	var options = {
 		template: 1,
