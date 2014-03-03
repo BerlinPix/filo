@@ -1,6 +1,6 @@
 {
     "name": "filo",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "title": "FILo <> Facebook Image Loader",
     "description": "Load your photos from your Facebook page to your own website using this plugin with a single line of HTML code. No need to upload your photos twice anymore! You can use it for single photos as well as for galleries.",
     "author": {
