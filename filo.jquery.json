@@ -25,5 +25,7 @@
     ],
     "dependencies": {
         "jquery": ">=1.5.0"
-    }
+    },
+    "homepage": "http://www.berlinpix.com/filo",
+	"demo": "http://www.berlinpix.com/filo/filo_template_4.html"
 }
