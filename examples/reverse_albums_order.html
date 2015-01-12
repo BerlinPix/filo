@@ -17,9 +17,12 @@
 				container: '#container',
 				//order: 'reverse', // order of the photos in the album
 				load: function () {
-					var albums = $(".filo .album").toArray(); //get all albums
-					$(".filo .album").remove(); //remove the old order
-					$(".filo").prepend(albums.reverse()); //reverse the order and add
+					var filoContainer = $(".filo"); //container to prepend
+					filoContainer.children().each(
+						function(i,child){
+							filoContainer.prepend(child); //reverse order
+						}
+					);
 					$(".filo .album").css("visibility", "visible"); //make albums visible
 				}
 			}
