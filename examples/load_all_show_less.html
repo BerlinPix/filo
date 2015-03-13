@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>jQuery FILo: load all show less</title>
+<link rel="stylesheet" href="../filo_style.css" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" language="javascript" type="text/javascript"></script>
+<script src="../filo.js" type="text/javascript" language="javascript"></script>
+		<script>
+
+		jQuery(document).ready(function ($) {
+
+			var options = {
+				template:1,
+				maxCount:'all', 
+				albums: ['family'],
+				container: '#container',
+				//define load function and show only first "n" thumbs
+				load: function () {					
+					var thumbCount = 3;
+					$('.filo .thumbs .thumb:lt('+3+')').show();
+				}
+			}
+			
+			$.filo("Kontrastspiel", options);
+		});
+
+		</script>
+		<style type="text/css">
+			.filo .thumbs .thumb {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>FILo example: will load the all photos but show only 3 thumbnails</h1>
+		<div id="container"></div>
+		<footer>
+	 		<small>© Copyright 2012, <a href="http://www.berlinpix.com">berlinpix.com</a></small>
+		</footer>		
+	</body>
+</html>
