@@ -11,12 +11,14 @@ FILo is a lightweight jQuery plugin for embedding pictures from your [facebook p
 - easy use with only HTML possible
 - 100% customizable
 
+<img src="https://raw.githubusercontent.com/BerlinPix/filo/master/screen%20shot.png" width="600" />
+
 ## Getting Started
 
 Load all albums of your facebook page
 
-  <!-- use HTML -->
-  <div class="filo" id="YOUR-FACEBOOK-ID"></div>
+    <!-- use HTML -->
+    <div class="filo" id="YOUR-FACEBOOK-ID"></div>
     
     <!-- or JS -->
     <div id="container"></div>
@@ -42,7 +44,7 @@ Add a specific photo album
               albums: ['XYZ']
           });
       });
-  </script>
+    </script>
 
 Wrapping around the HTML5 structure, the scripts and css files:
 
