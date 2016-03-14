@@ -11,7 +11,7 @@ FILo is a lightweight jQuery plugin for embedding pictures from your [facebook p
 - easy use with only HTML possible
 - 100% customizable
 
-<img src="https://raw.githubusercontent.com/BerlinPix/filo/master/screen%20shot.png" width="600" />
+<img src="https://raw.githubusercontent.com/BerlinPix/filo/master/screen%20shot.png?v=1" width="800" />
 
 ## Getting Started
 
