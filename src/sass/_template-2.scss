@@ -1,0 +1,64 @@
+@import '_mixins'; 
+
+.filo__template-2 {
+
+    & .filo {
+
+        &__album {
+
+            &__title {
+                
+            }
+
+            &__thumbs {
+
+                &__thumb {
+
+                    background: none repeat scroll 0 0 #FFF;
+                    border: 1px solid #BBB;
+                    box-shadow: 0 8px 4px #CCC;
+                    height: 87px;
+                    position: relative;
+                    width: 87px;
+                    padding: 5px 5px 13px;
+                    margin-bottom: 30px;
+
+                    & i {
+                        border: none;
+                    }
+
+                    & .before {
+                        display: block;
+                    }
+
+                    &:nth-child(3n + 1) {
+                        -moz-transform: rotate(-15deg);
+                        -webkit-transform: rotate(-15deg);
+                        -ms-transform: rotate(-15deg);
+                        -o-transform: rotate(-15deg);
+                        z-index: 2;   
+                    }
+                    &:nth-child(3n + 2) {
+                        margin-left: -100px;
+                    }
+                    &:nth-child(3n) {
+                        -moz-transform: rotate(15deg);
+                        -webkit-transform: rotate(15deg);
+                        -ms-transform: rotate(15deg);
+                        -o-transform: rotate(15deg);
+                        z-index: 3;  
+                        margin-left: -100px;
+                        margin-right: 100px;
+                    }
+
+                    &:after {
+                        content: '\A';
+                        display: block;
+                        clear: both;
+                        float: none;
+                    }
+                }
+            }
+        }
+    }
+}

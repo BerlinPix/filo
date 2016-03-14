@@ -1,0 +1,98 @@
+# FILo 2.0.0
+
+http://www.berlinpix.com/filo - copyright &copy; 2016 Erik Wendt
+
+FILo is a lightweight jQuery plugin (~14KB minified) for embedding pictures from your [facebook page](https://www.facebook.com/pages/create.php) into your own website without necessarily writing JavaScript.
+
+## Getting Started
+
+Load all albums of your facebook page
+
+	<!-- use HTML -->
+	<div class="filo" id="YOUR-FACEBOOK-ID"></div>
+    
+    <!-- or JS -->
+    <div id="container"></div>
+    <script>
+		$(function () {
+			$('#container').filo({facebookId: 'YOUR-FACEBOOK-ID'});
+		});
+	</script>
+
+Add a specific photo album
+
+	<!-- use HTML -->
+	<div class="filo" id="YOUR-FACEBOOK-ID">
+		<div class="filo__album" data-album-name="XYZ"></div>
+	</div>
+    
+    <!-- or JS -->
+    <div id="container"></div>
+    <script>
+      $(function () {
+          $('#container').filo({
+              facebookId: 'YOUR-FACEBOOK-ID',
+              albums: ['XYZ']
+          });
+      });
+	</script>
+
+Wrapping around the HTML5 structure, the scripts and css files:
+
+	<!DOCTYPE HTML>
+	<html>
+      <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="stylesheet" href="/path/to/filo_style.css" type="text/css" />
+      </head>
+      <body>	
+          <div class="filo" data-facebook-id="YOUR-FACEBOOK-ID">
+              <div class="filo__album" data-album-name="XYZ"></div>
+          </div>
+          <script src="https://code.jquery.com/jquery-2.2.1.min.js" language="javascript" type="text/javascript"></script>
+          <script src="/path/to/filo.js" type="text/javascript" language="javascript"></script>
+      </body>
+	</html>
+    
+  
+## API
+
+Option | Type | Default | Explanation
+--- | --- | --- | ---
+access_token	|	String	|	-	|	access token for the Facebook Graph API
+addAsPhotoStream | Bool | false | add all photos as one stream
+albums | Array of String\|Object | - | load only this albums
+load | Function | - | will be called after the loading is finished
+before | Function | - | will be called before the albums will be loaded
+container | String | body | container where the albums should be added
+excluded | Array of Strings | - | don't load the albums
+
+  	hideTitle: false,
+  	
+    href: '',
+    
+  	maxCount: 10, //max count of images in album
+  	
+    maxWidth: 90, //max width of overlay in percent
+  
+  	maxHeight: 90,//max height of overlay in percent
+  
+  	method: 'post', //'post' || 'get' - method for user forwarding
+
+  	newWindow: false, //open a new window by click
+
+  	order: 'normal',//new Array('normal','reverse','random'),
+
+  	template: 1, // design template
+  	
+    thumbWidth: '500',
+  	
+    thumbHeight: '500',
+  
+  	titleTag: 'h3'
+
+ 
+Copyright &copy; 2016, [berlinpix.com](http://www.berlinpix.com)
+licensed under the LGPL license.
+

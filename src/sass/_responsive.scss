@@ -1,0 +1,39 @@
+.filo {
+    &__album {
+        &__thumbs {
+            &__thumb {
+
+                /* desktop - large screen - 8 images per row */
+                width: 100 / 8 * 1%;
+                max-width: 300px;
+                min-width: 100px;
+
+                /**
+                max-width: load smaller images on smaller 
+                devices to optimize the page speed
+                */
+
+                /* desktop - 6 images per row */
+                $desktopWidth: 992px;
+                @media only screen and (max-width: $desktopWidth) {
+                    width: 100 / 6 * 1%;
+                    max-width: $desktopWidth / 6; 
+                }
+
+                /* tablet - 4 images per row */
+                $tabletWidth: 768px;
+                @media only screen and (max-width: $tabletWidth) {
+                    width: 100 / 4 * 1%;
+                    max-width: $tabletWidth / 4;
+                }
+
+                /* smartphone - 2 images per row */
+                $mobileWidth: 480px;
+                @media only screen and (max-width: $mobileWidth) {
+                    width: 100 / 4 * 1%;
+                    max-width: $mobileWidth / 4;
+                }
+            }
+        }
+    }
+}

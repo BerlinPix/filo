@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>API: albums - jQuery FILo</title>
+<link rel="stylesheet" href="../build/filo_style.css" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" language="javascript" type="text/javascript"></script>
+<script src="../build/filo.js" type="text/javascript" language="javascript"></script>
+<script>
+$(function () {
+	//set up the options
+	var options = {
+		facebookId: 'filojs',
+		template: 1, 
+		albums: ['lost places'],
+		container: '#js-filojs'
+	}	
+	
+	// do this
+	$.filo(options);
+	// or this
+	// $('#js-filojs').filo(options);
+});
+</script>
+</head>
+<body>
+	<!-- js example -->
+	<div id="js-filojs"></div>
+</body>
+</html>

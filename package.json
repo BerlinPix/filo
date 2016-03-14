@@ -1,0 +1,55 @@
+{
+  "name": "filo",
+  "version": "2.0.0",
+  "title": "FILo <> Facebook Image Loader",
+  "description": "Load your photos from your Facebook page to your own website using this plugin with a single line of HTML code. No need to upload your photos twice anymore! You can use it for single photos as well as for galleries.",
+  "author": {
+    "name": "Erik Wendt",
+    "email": "info@berlinpix.com",
+    "url": "http://berlinpix.com/"
+  },
+  "keywords": [
+    "facebook",
+    "photos",
+    "images",
+    "social",
+    "lightbox",
+    "popup",
+    "jQuery"
+  ],
+  "licenses": [
+    {
+      "type": "LGPL",
+      "url": "http://www.gnu.org/copyleft/lesser.html"
+    }
+  ],
+  "homepage": "http://www.berlinpix.com/filo",
+  "demo": "http://www.berlinpix.com/filo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BerlinPix/filo.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-concat": "^0.3.0",
+    "grunt-contrib-jshint": "~0.9.2",
+    "grunt-contrib-nodeunit": "~0.3.3",
+    "grunt-contrib-sass": "^0.7.3",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-css": "^0.5.4",
+    "grunt-express-server": "^0.4.19",
+    "grunt-http-server": "^1.0.0",
+    "gulp": "^3.8.10",
+    "gulp-concat-util": "^0.5.1",
+    "gulp-express": "^0.1.1",
+    "gulp-sass": "^2.2.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "compression": "^1.6.1",
+    "express": "^4.10.2",
+    "multer": "^0.1.6",
+    "serve-index": "^1.5.0"
+  }
+}

@@ -1,0 +1,31 @@
+@import '_mixins'; 
+
+.filo__template-1 {
+
+    & .filo {
+
+        &__album {
+
+            &__title {
+                
+            }
+
+            &__thumbs {
+
+                &__thumb {
+
+                    position: relative;
+
+                    & i {
+                        border: 1px dashed #555;
+                        @include box-shadow(3px, 4px, 6px, #999);
+                    }
+
+                    & .before {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

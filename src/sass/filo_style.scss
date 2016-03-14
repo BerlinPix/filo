@@ -1,0 +1,75 @@
+@import 'mixins';
+
+/*
+ * FILo 2.0
+ * http://www.berlinpix.com/filo
+ *
+ * Copyright 2016, BerlinPix.com
+ * licensed under the LGPL license.
+ */
+.clear {
+	clear:both;	
+}
+
+.filo {
+
+	font-family: sans-serif;
+
+	&__album {
+		margin: 10px;
+
+		&__title {
+			font-size: 24px;
+			margin: 5px 0;
+		}
+
+		&__thumbs {
+
+			text-align: center;
+			font-size: 0; //for white space
+
+			&__thumb {
+
+				margin: 0;
+				display: inline-block;;
+				position: relative;
+				box-sizing: border-box;
+
+				& i {
+					display: block;
+					position: absolute;
+					background-repeat: no-repeat;
+					background-position: 50% 25%;
+					background-size: cover;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+				}
+
+				&:before {
+					content: '';
+					display: block;
+					margin-top: 100%;
+				}
+			}
+
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+		}
+	}
+}
+
+@import 'responsive';
+@import 'loader';
+@import 'overlay';
+@import 'progress';
+@import 'template-1';
+@import 'template-2';
+
+
+
+
