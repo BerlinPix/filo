@@ -164,7 +164,7 @@ $.filo = function (filo_options) {
 */
 var filoHandler = function (id, options) {
 	
-	var uid = getUniqueID(id);
+	var uid = getUniqueID();
 	var stream = [];
 	var value = null;
 	var container = options.container;
@@ -347,7 +347,7 @@ var getAllAlbumsData = function (source, id, at, cb) {
 }
 var handleAlbum = function (uid, id, album, albumID, albumContainer, options) {
 
-	getAlbumData('facebook',album, options.accessToken ,function (response) {
+	getAlbumData('facebook', album, options ,function (response) {
 
 		var photos = response.data;
 		var maxCount = options.maxCount === 'all' ? photos.length : options.maxCount;
@@ -424,11 +424,25 @@ var addReverseOrder = function (uid, maxCount, photos, id, album, albumID, optio
 	}
 }
 
-var getAlbumData = function (source, album, at , cb) {
-	//var url = 'https://graph.facebook.com/fql?q=' + getAlbumFQL(album, options);
+var getAlbumData = function (source, album, options , cb) {
 	var url = null;
-	var access_token = typeof at !== 'undefined' ? '?access_token=' + at : '';
+	var access_token = typeof options.accessToken !== 'undefined' ? '?access_token=' + options.accessToken : '';
 	var fields = '&fields=images';
+	var maxCount = 25; // default
+
+	// check how many photos should be loaded
+	if (typeof options.maxCount === 'number') {
+		maxCount = options.maxCount;
+	}
+	// load all photos 
+	else if (options.maxCount === 'all') {
+		maxCount = 1000; // 
+	} 
+	else if (parseInt(options.maxCount) > 0) {
+		maxCount = parseInt(options.maxCount);
+	}
+
+	fields += '&limit=' + maxCount;
 
 	switch (source) {
 		case 'facebook': url = 'https://graph.facebook.com/' + album.id + '/photos' + access_token + fields; break;
@@ -819,12 +833,10 @@ var getRootPath = function () {
 }
 
 /**
-* Generates a unique ID as selector based on the original ID
-*
-* @param {Number} The Facebook ID
+* Generates a unique ID as selector 
 */
-var getUniqueID = function (id) {
-	return id + "_" +Date.now() + "_" + Math.round(Math.random()*100000);
+var getUniqueID = function () {
+	return Date.now() + "_" + Math.round(Math.random()*100000);
 }
 
 /**

@@ -34,12 +34,10 @@ var getRootPath = function () {
 }
 
 /**
-* Generates a unique ID as selector based on the original ID
-*
-* @param {Number} The Facebook ID
+* Generates a unique ID as selector 
 */
-var getUniqueID = function (id) {
-	return id + "_" +Date.now() + "_" + Math.round(Math.random()*100000);
+var getUniqueID = function () {
+	return Date.now() + "_" + Math.round(Math.random()*100000);
 }
 
 /**

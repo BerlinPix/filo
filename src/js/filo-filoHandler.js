@@ -6,7 +6,7 @@
 */
 var filoHandler = function (id, options) {
 	
-	var uid = getUniqueID(id);
+	var uid = getUniqueID();
 	var stream = [];
 	var value = null;
 	var container = options.container;
