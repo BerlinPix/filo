@@ -85,7 +85,7 @@ container | String | body | Container where the albums should be added to
 excluded | Array of Strings | - | Don't load this albums
 hideTitle | Bool | false | Don't add title to album
 href | String | - | Forward user to given url instead of showing overlay
-maxCount | Number | 10 | Max count of images in the albums. can be set global or for each album
+maxCount | Number\|String | 10 | Max count of images in the albums. Can be set global or for each album. You can use any number or 'all' to get all the images from the album. 
 maxWidth | Number | 90 | Max width of overlay image in percent
 maxHeight | Number | 90 | Max height of overlay in percent
 method | String | post | Method for user forwarding (post or get)
