@@ -82,7 +82,7 @@ var getPictureFromSize = function (width, height, photo) {
 		}		
 	}
 
-	return result;
+	return result === null ? {} : result;
 }
 
 /* TO DO: optimize for mobile */

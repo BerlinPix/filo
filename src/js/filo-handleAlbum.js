@@ -79,8 +79,50 @@ var addReverseOrder = function (uid, maxCount, photos, id, album, albumID, optio
 
 var getAlbumData = function (source, album, options , cb) {
 	var url = null;
-	var access_token = typeof options.accessToken !== 'undefined' ? '?access_token=' + options.accessToken : '';
-	var fields = '&fields=images';
+	var maxCount = getMaxCount(options);
+	var getString = '';
+	var count = 0;
+	var imagePerRequest = 100;
+	var load;
+	var params = {
+		access_token: typeof options.accessToken !== 'undefined' ? options.accessToken : '',
+		fields: ['images'],
+		limit: maxCount
+	};
+
+	// build GET string out of params
+	$.each(Object.keys(params), function (index, key) {
+		getString += (index === 0 ? '?' : '&') + key + '=' + params[key]
+	});
+
+	// @todo: add more source like instagram
+	switch (source) {
+		case 'facebook': url = 'https://graph.facebook.com/' + album.id + '/photos' + getString; break;
+		default: url = 'https://graph.facebook.com/' + album.id + '/photos' + getString;
+	}
+
+	// only 100 images are allowd per request. each responsve 
+	// has a "next" link so we use recursive loading to get all images
+	load = function (url, cb) {
+		$.getJSON(url, function (response) {
+			if (maxCount > imagePerRequest  && response.paging && response.paging.next) {
+				load(response.paging.next, function (recursiveResponse) {
+					response.data = response.data.concat(recursiveResponse.data);
+					cb(response);
+				});
+			}
+			else {
+				cb(response);
+			}
+		}).fail(function () {
+			console.log('couldn\'t load the data of the album: "' + album.name + '". please check the facebook ID and access token');
+		});
+	}
+
+	load(url, cb);
+}
+
+var getMaxCount = function (options) {
 	var maxCount = 25; // default
 
 	// check how many photos should be loaded
@@ -95,16 +137,5 @@ var getAlbumData = function (source, album, options , cb) {
 		maxCount = parseInt(options.maxCount);
 	}
 
-	fields += '&limit=' + maxCount;
-
-	switch (source) {
-		case 'facebook': url = 'https://graph.facebook.com/' + album.id + '/photos' + access_token + fields; break;
-		default: url = 'https://graph.facebook.com/' + album.id + '/photos' + access_token;
-	}
-
-	$.getJSON(url, function (response) {
-		cb(response);
-	}).fail(function () {
-		console.log('couldn\'t load the data of the album: "' + album.name + '". please check the facebook ID and access token');
-	});
+	return maxCount;
 }
