@@ -112,6 +112,7 @@ $.filo = function (filo_options) {
 		maxCount: 10, //max count of images in album
 		maxWidth: 90, //max width of overlay in percent
 		maxHeight: 90,//max height of overlay in percent
+		maxPreview: Number.MAX_VALUE, //max count of thumbnails
 		method: 'post', //'post' || 'get' - method for user forwarding
 		
 		newWindow: false, //open a new window by click

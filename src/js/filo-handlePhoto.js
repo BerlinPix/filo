@@ -6,6 +6,7 @@ var handlePhoto = function (facebookID, album, albumID, photo, photos, options, 
 	var cssClass = 'filo__album__thumbs__thumb';
 	var a = $('<a class="'+cssClass+'" data-child="'+index+'" href="'+src_big+'"></a>');
 	var picture = null;
+	var maxPreview = typeof options.maxPreview !== 'undefined' && !isNaN(parseInt(options.maxPreview)) ? parseInt(options.maxPreview) : Number.MAX_VALUE;
 
 	$(a).click(function (evt) {
 		evt.preventDefault();
@@ -55,7 +56,9 @@ var handlePhoto = function (facebookID, album, albumID, photo, photos, options, 
 		$(a).addClass(cssClass + '--vertical');
 	}
 
-	$(a).append('<i style="background-image:url('+picture.source+');" ></i>');
+	if (index < maxPreview) {
+		$(a).append('<i style="background-image:url('+picture.source+');" ></i>');
+	}
 }
 
 /**

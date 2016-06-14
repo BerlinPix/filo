@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>API: albums - jQuery FILo</title>
+<link rel="stylesheet" href="../build/filo_examples.css" type="text/css" />
+<link rel="stylesheet" href="../build/filo_style.css" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" language="javascript" type="text/javascript"></script>
+<script src="../build/filo.min.js" type="text/javascript" language="javascript"></script>
+<script>
+$(function () {
+	//set up the options
+	var options = {
+		facebookId: 'filojs',
+		albums: ['lost places'],
+		maxPreview: '3'
+	}	
+
+	$('#js-filojs').filo(options);
+});
+</script>
+<style>
+	p {
+		font-size: 20px;
+		margin: 10px;
+	}
+</style>
+</head>
+<body>
+	<p>show just a few thumbnails but show all images in the overlay</p>
+	<!-- js example -->
+	<div id="js-filojs"></div>
+	<!-- html example -->	
+	<div class="filo" data-facebook-id="filojs" data-max-preview="4">
+		<div class="filo__album" data-album-name="lost places"></div>
+	</div>
+</body>
+</html>
