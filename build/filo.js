@@ -114,7 +114,7 @@ $.filo = function (filo_options) {
 		maxCount: 10, //max count of images in album
 		maxWidth: 90, //max width of overlay in percent
 		maxHeight: 90,//max height of overlay in percent
-		maxPreview: Number.MAX_VALUE, //max count of thumbnails
+		maxPreview: Infinity, //max count of thumbnails
 		method: 'post', //'post' || 'get' - method for user forwarding
 		
 		newWindow: false, //open a new window by click
@@ -495,7 +495,7 @@ var handlePhoto = function (facebookID, album, albumID, photo, photos, options, 
 	var cssClass = 'filo__album__thumbs__thumb';
 	var a = $('<a class="'+cssClass+'" data-child="'+index+'" href="'+src_big+'"></a>');
 	var picture = null;
-	var maxPreview = typeof options.maxPreview !== 'undefined' && !isNaN(parseInt(options.maxPreview)) ? parseInt(options.maxPreview) : Number.MAX_VALUE;
+	var maxPreview = typeof options.maxPreview !== 'undefined' && !isNaN(parseInt(options.maxPreview)) ? parseInt(options.maxPreview) : Infinity;
 
 	$(a).click(function (evt) {
 		evt.preventDefault();
