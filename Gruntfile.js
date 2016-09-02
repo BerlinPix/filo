@@ -18,7 +18,9 @@ module.exports = function(grunt) {
         src: 'src/js/**/*.js',
         dest: 'build/filo.js',
         options: {
-          banner: ";(function( $ ) {\n\n",
+          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+          '<%= grunt.template.today("yyyy-mm-dd") %> */\n\n' +
+          ";(function( $ ) {\n\n",
           footer: "\n\n})( jQuery );"
         }
       },
@@ -33,13 +35,15 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+
       },     
       dist: {
         src: 'src/js/**/*.js',
         dest: 'build/filo.min.js',
         options: {
-          banner: ";(function( $ ) {\n\n",
+          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+          '<%= grunt.template.today("yyyy-mm-dd") %> */\n\n' +
+          ";(function( $ ) {\n\n",
           footer: "\n\n})( jQuery );"
         }
       }    
@@ -81,6 +85,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-express-server');
 
-  grunt.registerTask('default', 'start server', ['express:dev', 'watch']);
+  grunt.registerTask('build', ['sass','concat', 'uglify', 'cssmin']);
+
+  grunt.registerTask('default', 'start server', ['build', 'express:dev', 'watch']);
 
 };
