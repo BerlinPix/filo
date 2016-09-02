@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": ";;;;;;;AASA,IAAK;EACJ,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC",
+"mappings": "AAEA;;;;;;GAMG;AACH,IAAK;EACJ,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC",
 "sources": ["../sass/filo_examples.scss"],
 "names": [],
 "file": "filo_examples.css"

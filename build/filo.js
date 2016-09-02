@@ -81,7 +81,7 @@ $.filo = function (filo_options) {
 	//default options
 	var options = $.extend({
 
-		accessToken: 'CAAaADXqheBgBAIMvHYLu35uppUZB1oKiYrNnVIvqTDGDF5kYLKKeIB5bIA2qAN0ouGESzma6sZBwZAzOC3KREyqclge0bQXGmzRyjwVgnszgj0wZBQWPKNBUoLorJ2bm0ZCmaMGZBiZCQ3JamhOm3zgkMOSrB0wDs9uWcoMtTjGBJlVfPfJWD3l',
+		accessToken: false,
 
 		addAsPhotoStream: false,
 
@@ -124,6 +124,7 @@ $.filo = function (filo_options) {
 		//overlayOpacity: 0.75, //opacity of the overlay container
 
 		photos_array: null,
+		proxyUrl: 'https://bpx.gacrux.uberspace.de/filo-proxy/',
 		
 		resize: false,
 		root_path: getRootPath(), //path to FILo folder
@@ -179,7 +180,13 @@ var filoHandler = function (id, options) {
 		$(container).addClass('filo--stream')
 	}
 
-	getAllAlbumsData('facebook', id, options.accessToken, function (response) {
+	getAllAlbumsData('facebook', id, options, function (error, response) {
+
+		if (error) {
+			console.log(error);
+			removeLoaderGraphic();
+			return;
+		}
 
 		//call the before eventlistener
 		if(typeof options.before === 'function') {
@@ -330,25 +337,31 @@ var getAlbumContainer = function (selector, album) {
 *
 * @param id {Number} The Facebook ID
 */
-var getAllAlbumsData = function (source, id, at, cb) {
-	//var url = 'https://graph.facebook.com/fql?q=' + getAllAlbumsFQL(id, options);
+var getAllAlbumsData = function (source, id, options, cb) {
 	var url = null;
-	var access_token = typeof at !== 'undefined' ? '?access_token=' + at : '';
+	var access_token = options.accessToken ? '?access_token=' + options.accessToken : '';
+	var baseUrl = options.accessToken ? 'https://graph.facebook.com/' : options.proxyUrl;
 
 	switch (source) {
-		case 'facebook': url = 'https://graph.facebook.com/'+id+'/albums/' + access_token; break;
-		default: 'https://graph.facebook.com/'+id+'/albums/' + access_token;
+		case 'facebook': url = baseUrl + id + '/albums/' + access_token; break;
+		default: baseUrl + id +'/albums/' + access_token;
 	}
 
 	$.getJSON(url, function (response) {
-		cb(response);
+		cb(null, response);
 	}).fail(function (jqxhr, textStatus, error) {
-		console.log('couldn\'t load the data from ' + source + '. please check the ID and access token', textStatus , error);
+		cb('couldn\'t load the data from ' + source + '. please check the ID and access token');
 	});
 }
 var handleAlbum = function (uid, id, album, albumID, albumContainer, options) {
 
-	getAlbumData('facebook', album, options ,function (response) {
+	getAlbumData('facebook', album, options ,function (error, response) {
+
+		if (error) {
+			console.log(error);
+			removeLoaderGraphic();
+			return;
+		}
 
 		var photos = response.data;
 		var maxCount = options.maxCount === 'all' ? photos.length : options.maxCount;
@@ -432,8 +445,9 @@ var getAlbumData = function (source, album, options , cb) {
 	var count = 0;
 	var imagePerRequest = 100;
 	var load;
+	var baseUrl = options.accessToken ? 'https://graph.facebook.com/' : options.proxyUrl;
 	var params = {
-		access_token: typeof options.accessToken !== 'undefined' ? options.accessToken : '',
+		access_token: options.accessToken ? options.accessToken : '',
 		fields: ['images'],
 		limit: maxCount
 	};
@@ -445,8 +459,8 @@ var getAlbumData = function (source, album, options , cb) {
 
 	// @todo: add more source like instagram
 	switch (source) {
-		case 'facebook': url = 'https://graph.facebook.com/' + album.id + '/photos' + getString; break;
-		default: url = 'https://graph.facebook.com/' + album.id + '/photos' + getString;
+		case 'facebook': url = baseUrl + album.id + '/photos' + getString; break;
+		default: url = baseUrl + album.id + '/photos' + getString;
 	}
 
 	// only 100 images are allowd per request. each responsve 
@@ -456,14 +470,14 @@ var getAlbumData = function (source, album, options , cb) {
 			if (maxCount > imagePerRequest  && response.paging && response.paging.next) {
 				load(response.paging.next, function (recursiveResponse) {
 					response.data = response.data.concat(recursiveResponse.data);
-					cb(response);
+					cb(null, response);
 				});
 			}
 			else {
-				cb(response);
+				cb(null, response);
 			}
 		}).fail(function () {
-			console.log('couldn\'t load the data of the album: "' + album.name + '". please check the facebook ID and access token');
+			cb('couldn\'t load the data of the album: "' + album.name + '". please check the facebook ID and access token');
 		});
 	}
 
