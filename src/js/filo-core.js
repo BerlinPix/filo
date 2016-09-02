@@ -79,7 +79,7 @@ $.filo = function (filo_options) {
 	//default options
 	var options = $.extend({
 
-		accessToken: 'CAAaADXqheBgBAIMvHYLu35uppUZB1oKiYrNnVIvqTDGDF5kYLKKeIB5bIA2qAN0ouGESzma6sZBwZAzOC3KREyqclge0bQXGmzRyjwVgnszgj0wZBQWPKNBUoLorJ2bm0ZCmaMGZBiZCQ3JamhOm3zgkMOSrB0wDs9uWcoMtTjGBJlVfPfJWD3l',
+		accessToken: false,
 
 		addAsPhotoStream: false,
 
@@ -122,6 +122,7 @@ $.filo = function (filo_options) {
 		//overlayOpacity: 0.75, //opacity of the overlay container
 
 		photos_array: null,
+		proxyUrl: 'https://bpx.gacrux.uberspace.de/filo-proxy/',
 		
 		resize: false,
 		root_path: getRootPath(), //path to FILo folder

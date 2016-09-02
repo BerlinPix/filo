@@ -1,6 +1,12 @@
 var handleAlbum = function (uid, id, album, albumID, albumContainer, options) {
 
-	getAlbumData('facebook', album, options ,function (response) {
+	getAlbumData('facebook', album, options ,function (error, response) {
+
+		if (error) {
+			console.log(error);
+			removeLoaderGraphic();
+			return;
+		}
 
 		var photos = response.data;
 		var maxCount = options.maxCount === 'all' ? photos.length : options.maxCount;
@@ -84,8 +90,9 @@ var getAlbumData = function (source, album, options , cb) {
 	var count = 0;
 	var imagePerRequest = 100;
 	var load;
+	var baseUrl = options.accessToken ? 'https://graph.facebook.com/' : options.proxyUrl;
 	var params = {
-		access_token: typeof options.accessToken !== 'undefined' ? options.accessToken : '',
+		access_token: options.accessToken ? options.accessToken : '',
 		fields: ['images'],
 		limit: maxCount
 	};
@@ -97,8 +104,8 @@ var getAlbumData = function (source, album, options , cb) {
 
 	// @todo: add more source like instagram
 	switch (source) {
-		case 'facebook': url = 'https://graph.facebook.com/' + album.id + '/photos' + getString; break;
-		default: url = 'https://graph.facebook.com/' + album.id + '/photos' + getString;
+		case 'facebook': url = baseUrl + album.id + '/photos' + getString; break;
+		default: url = baseUrl + album.id + '/photos' + getString;
 	}
 
 	// only 100 images are allowd per request. each responsve 
@@ -108,14 +115,14 @@ var getAlbumData = function (source, album, options , cb) {
 			if (maxCount > imagePerRequest  && response.paging && response.paging.next) {
 				load(response.paging.next, function (recursiveResponse) {
 					response.data = response.data.concat(recursiveResponse.data);
-					cb(response);
+					cb(null, response);
 				});
 			}
 			else {
-				cb(response);
+				cb(null, response);
 			}
 		}).fail(function () {
-			console.log('couldn\'t load the data of the album: "' + album.name + '". please check the facebook ID and access token');
+			cb('couldn\'t load the data of the album: "' + album.name + '". please check the facebook ID and access token');
 		});
 	}
 

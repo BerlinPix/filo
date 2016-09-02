@@ -20,7 +20,13 @@ var filoHandler = function (id, options) {
 		$(container).addClass('filo--stream')
 	}
 
-	getAllAlbumsData('facebook', id, options.accessToken, function (response) {
+	getAllAlbumsData('facebook', id, options, function (error, response) {
+
+		if (error) {
+			console.log(error);
+			removeLoaderGraphic();
+			return;
+		}
 
 		//call the before eventlistener
 		if(typeof options.before === 'function') {
@@ -171,19 +177,19 @@ var getAlbumContainer = function (selector, album) {
 *
 * @param id {Number} The Facebook ID
 */
-var getAllAlbumsData = function (source, id, at, cb) {
-	//var url = 'https://graph.facebook.com/fql?q=' + getAllAlbumsFQL(id, options);
+var getAllAlbumsData = function (source, id, options, cb) {
 	var url = null;
-	var access_token = typeof at !== 'undefined' ? '?access_token=' + at : '';
+	var access_token = options.accessToken ? '?access_token=' + options.accessToken : '';
+	var baseUrl = options.accessToken ? 'https://graph.facebook.com/' : options.proxyUrl;
 
 	switch (source) {
-		case 'facebook': url = 'https://graph.facebook.com/'+id+'/albums/' + access_token; break;
-		default: 'https://graph.facebook.com/'+id+'/albums/' + access_token;
+		case 'facebook': url = baseUrl + id + '/albums/' + access_token; break;
+		default: baseUrl + id +'/albums/' + access_token;
 	}
 
 	$.getJSON(url, function (response) {
-		cb(response);
+		cb(null, response);
 	}).fail(function (jqxhr, textStatus, error) {
-		console.log('couldn\'t load the data from ' + source + '. please check the ID and access token', textStatus , error);
+		cb('couldn\'t load the data from ' + source + '. please check the ID and access token');
 	});
 }
