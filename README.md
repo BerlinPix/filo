@@ -1,4 +1,4 @@
-# FILo 2.0.0
+# FILo 2.1.0
 
 http://www.berlinpix.com/filo - copyright &copy; 2016 Erik Wendt
 
@@ -68,15 +68,27 @@ Wrapping around the HTML5 structure, the scripts and css files:
 
 To use FILo you need a public [facebook page](https://www.facebook.com/pages/create/). Those pages have ID's which you have to use identify your page in the code. If you don't know your ID, find help here: [http://findmyfbid.com/](http://findmyfbid.com/)
 
+## Proxy Service
+
+I've created a service called [filo-proxy](https://github.com/BerlinPix/filo-proxy). Filo.js is using this proxy instead of making the requests directly to Facebook. The reason for that [I've documented here](https://github.com/BerlinPix/filo-proxy#why).
+
+If you don't want that you have 2 possibilities:
+
+1. provide your own proxy using the option "proxyUrl" (you could take a copy of [filo-proxy]((https://github.com/BerlinPix/filo-proxy)))
+2. you generate your own token as written in the next section (NOT recommended)
+
+**WARNING:**
+**If you put an access token into your options filo.js will not use the proxy and will do the requests to Facebook directly instead. I can not recommend that solution because than your token is visible to everybody and can easily be stolen for something you don't want to.**
+
 ## Access Token
 
-To use the Facebook Graph API a valid [access token](https://developers.facebook.com/docs/facebook-login/access-tokens) is needed. I have generated one for FIlo which will never epires. If you want to use your own you can do it [like here](https://www.rocketmarketinginc.com/blog/get-never-expiring-facebook-page-access-token/). 
+To use the Facebook Graph API a valid [access token](https://developers.facebook.com/docs/facebook-login/access-tokens) is needed. If you want to use your own instead of the proxy you can do it [like here](https://www.rocketmarketinginc.com/blog/get-never-expiring-facebook-page-access-token/). 
   
 ## API
 
 Property | Type | Default | Explanation
 --- | --- | --- | ---
-accessToken | String | - |  Access token for the Facebook Graph API. Use this property if you want to use your own
+accessToken | String | - |  Access token for the Facebook Graph API. Use this property if you don't want to use the proxy
 addAsPhotoStream | Bool | false | Add all photos as one stream
 albums | Array of String\|Object | - | Load only this albums
 load | Function | - | Will be called after the loading is finished
@@ -92,6 +104,7 @@ maxHeight | Number | 90 | Max height of overlay in percent
 method | String | post | Method for user forwarding (post or get)
 newWindow | Bool | false | Open a new tab on click by user forwarding
 order | String | normal | Order in which the photos should be added (normal, reverse, random)
+proxyUrl | String | https://bpx.gacrux.uberspace.de/filo-proxy/ | Use this URL to do the requests instead of requesting facebook.com. See [filo-proxy](https://github.com/BerlinPix/filo).
 template | Number | 1 | Design template which should be used
 thumbWidth | Number | 300 | Max width of the thumbnails. FILo tries to get the value **out of the CSS**. With this property you can overwrite the css settings.
 thumbHeight | Numbr | 500 | Max height of the thumbnails. FILo tries to get the value **out of the CSS**. With this property you can overwrite the css settings.
