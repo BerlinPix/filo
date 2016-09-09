@@ -2,6 +2,8 @@
 
 http://www.berlinpix.com/filo - copyright &copy; 2016 Erik Wendt
 
+> If you want to support me than test filo.js and if you found any bugs [report them here](https://github.com/berlinpix/filo/issues). Feel free to ask for new features and I will add them if I can. I'm working on that in my free time and just for fun so please be patient with me.
+
 FILo is a lightweight jQuery plugin for embedding pictures from your [facebook page](https://www.facebook.com/pages/create.php) into your own website without necessarily writing JavaScript.
 
 - only ~5KB minified and gzipped
