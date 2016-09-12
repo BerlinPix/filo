@@ -1,4 +1,4 @@
-/*! filo.js - v2.1.0 - 2016-09-02 */
+/*! filo.js - v2.1.0 - 2016-09-12 */
 
 ;(function( $ ) {
 
@@ -130,6 +130,8 @@ $.filo = function (filo_options) {
 		
 		resize: false,
 		root_path: getRootPath(), //path to FILo folder
+
+		setImageLink: false, // generate hash for images like www.my-site.com/fb-page-id/album/photo
 		
 		template: 1, //design template
 		//thumbWidth: '500',
@@ -397,8 +399,31 @@ var handleAlbum = function (uid, id, album, albumID, albumContainer, options) {
 			$('.filo .excluded').remove();
 			//call the load eventlistener
 			options.load();
+			if (options.setImageLink) {
+				openImageFromHash(options.facebookId, album.name);
+			}
 		}
 	});
+}
+
+var openImageFromHash = function (facebookId, album) {
+
+	var hash, hashFbId, hashAlbum, hashIndex;
+
+	if (window.location.hash.indexOf('/filo/') < 0) {
+		return;
+	}
+
+	hash = window.location.hash.split('/');
+	hashFbId = hash[2];
+	hashAlbum = hash[3];
+	hashIndex = parseInt(hash[4]) - 1;
+
+	if (hashFbId === facebookId && hashAlbum === album) {
+		if ($('[data-hash="' + facebookId + '-' + album + '-' + hashIndex + '"]').length > 0) {
+			$('[data-hash="' + facebookId + '-' + album + '-' + hashIndex + '"]').trigger('filo-click');
+		}
+	}
 }
 
 var addNormalOrder = function (uid, maxCount, photos, id, album, albumID, options, albumContainer) {
@@ -513,8 +538,13 @@ var handlePhoto = function (facebookID, album, albumID, photo, photos, options, 
 	var picture = null;
 	var maxPreview = typeof options.maxPreview !== 'undefined' && !isNaN(parseInt(options.maxPreview)) ? parseInt(options.maxPreview) : Infinity;
 
-	$(a).click(function (evt) {
+	// set hash value open this image later on
+	$(a).attr('data-hash', facebookID + '-' + album.name + '-' + index);
+
+	$(a).on('click filo-click', function (evt) {
+
 		evt.preventDefault();
+
 		if (typeof options.href === 'string' && options.href.length > 0) {
 			forwardUser(facebookID, album.name, options);
 		} else {
@@ -525,7 +555,11 @@ var handlePhoto = function (facebookID, album, albumID, photo, photos, options, 
 				photos, 
 				$(this).attr('href'), 
 				options
-			);	
+			);
+		}
+
+		if (evt.type === 'click' && options.setImageLink) {
+			setUrlHash(facebookID, album.name, index);
 		}
 	});
 
@@ -694,22 +728,26 @@ var showOverlay = function (thumb, album, index, photos, path, options) {
 	//left arrow
 	$('.filo__overlay__container__left').click(function () {
 		index = prevImage(index, photos, options);
+		setUrlHash(options.facebookId, album.name, index);
 	});
 	//right arrow	
 	$('.filo__overlay__container__right').click(function () {		
 		index = nextImage(index, photos, options);
-	});	
+		setUrlHash(options.facebookId, album.name, index);
+	});
 
 	$(document).unbind('keyup');
 	$(document).bind('keyup',function (evt) {
 		switch (evt.keyCode) {
 			//left -> prev image
 			case 37: 
-				index = prevImage(index, photos, options);	 
+				index = prevImage(index, photos, options);
+				setUrlHash(options.facebookId, album.name, index);
 				break;
 			//right -> next image
 			case 39:
 				index = nextImage(index, photos, options);
+				setUrlHash(options.facebookId, album.name, index);
 				break;
 		}
 	});
@@ -765,6 +803,9 @@ var prevImage = function (index, photos, options) {
 		$('.filo_full_picture').attr('src', src_big);
 		$('.filo__overlay__container__meta__count').text((index+1)+' / '+photos.length);
 		resizeImage(options);
+		if (options.setImageLink) {
+			setUrlHash(null, null, index);
+		}
 		return index;
 	} else {
 		shakeOverlay();
@@ -779,6 +820,9 @@ var nextImage = function (index, photos, options) {
 		$('.filo_full_picture').attr('src', src_big);
 		$('.filo__overlay__container__meta__count').text((index+1)+' / '+photos.length);
 		resizeImage(options);
+		if (options.setImageLink) {
+			setUrlHash(null, null, index);
+		}
 		return index;
 	} else {
 		shakeOverlay();
@@ -847,6 +891,31 @@ var resizeImage = function (options) {
 			
 		resize = false;
 	}
+}
+
+var setUrlHash = function (pageId, album, index) {
+
+	var hash = window.location.hash;
+	var image = index + 1;
+
+	if (hash.indexOf('/filo/')) {
+		hash = hash.split('/');
+	}
+
+	// if page ID isn't defined use URL part
+	if (!pageId) {
+		pageId = hash[2];
+	}
+
+	// if albui´ isn't defined use URL part
+	if (!album) {
+		album = hash[3];
+	}
+
+	// remember that the has was set from script for the onhashchange handler
+	$('html').attr('data-add-hash', true);
+
+	window.location.hash = '/filo/' + pageId + '/' + album + '/' + image;
 }
 /**
 * Helper method to get the path to FIlo.

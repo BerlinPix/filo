@@ -126,6 +126,8 @@ $.filo = function (filo_options) {
 		
 		resize: false,
 		root_path: getRootPath(), //path to FILo folder
+
+		setImageLink: false, // generate hash for images like www.my-site.com/fb-page-id/album/photo
 		
 		template: 1, //design template
 		//thumbWidth: '500',
