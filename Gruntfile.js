@@ -18,8 +18,11 @@ module.exports = function(grunt) {
         src: 'src/js/**/*.js',
         dest: 'build/filo.js',
         options: {
-          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-          '<%= grunt.template.today("yyyy-mm-dd") %> */\n\n' +
+          banner: '/*!\n' +
+          ' * URL: <%= pkg.homepage %>\n' +
+          ' * Author: <%= pkg.author.name %>\n' +
+          ' * Version: <%= pkg.version %>\n' +
+          ' */\n' +
           ";(function( $ ) {\n\n",
           footer: "\n\n})( jQuery );"
         }
@@ -41,8 +44,11 @@ module.exports = function(grunt) {
         src: 'src/js/**/*.js',
         dest: 'build/filo.min.js',
         options: {
-          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-          '<%= grunt.template.today("yyyy-mm-dd") %> */\n\n' +
+          banner: '/*!\n' +
+          ' * URL: <%= pkg.homepage %>\n' +
+          ' * Author: <%= pkg.author.name %>\n' +
+          ' * Version: <%= pkg.version %>\n' +
+          ' */\n' +
           ";(function( $ ) {\n\n",
           footer: "\n\n})( jQuery );"
         }
@@ -56,6 +62,13 @@ module.exports = function(grunt) {
     },
     sass: {
       dist: {
+        options: {
+          banner: '/*!\n' +
+                  ' * URL: <%= pkg.homepage %>\n' +
+                  ' * Author: <%= pkg.author.name %>\n' +
+                  ' * Version: <%= pkg.version %>\n' +
+                  ' */\n'
+        },
         files: {
           'src/css/filo_style.css': 'src/sass/filo_style.scss',
           'src/css/filo_examples.css': 'src/sass/filo_examples.scss'

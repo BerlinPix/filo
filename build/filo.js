@@ -1,5 +1,8 @@
-/*! filo.js - v2.1.0 - 2016-09-12 */
-
+/*!
+ * URL: http://www.berlinpix.com/filo
+ * Author: Erik Wendt
+ * Version: 2.1.1
+ */
 ;(function( $ ) {
 
 
