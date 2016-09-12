@@ -40,8 +40,31 @@ var handleAlbum = function (uid, id, album, albumID, albumContainer, options) {
 			$('.filo .excluded').remove();
 			//call the load eventlistener
 			options.load();
+			if (options.setImageLink) {
+				openImageFromHash(options.facebookId, album.name);
+			}
 		}
 	});
+}
+
+var openImageFromHash = function (facebookId, album) {
+
+	var hash, hashFbId, hashAlbum, hashIndex;
+
+	if (window.location.hash.indexOf('/filo/') < 0) {
+		return;
+	}
+
+	hash = window.location.hash.split('/');
+	hashFbId = hash[2];
+	hashAlbum = hash[3];
+	hashIndex = parseInt(hash[4]) - 1;
+
+	if (hashFbId === facebookId && hashAlbum === album) {
+		if ($('[data-hash="' + facebookId + '-' + album + '-' + hashIndex + '"]').length > 0) {
+			$('[data-hash="' + facebookId + '-' + album + '-' + hashIndex + '"]').trigger('filo-click');
+		}
+	}
 }
 
 var addNormalOrder = function (uid, maxCount, photos, id, album, albumID, options, albumContainer) {
