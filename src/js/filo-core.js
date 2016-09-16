@@ -25,6 +25,11 @@ $.fn.filo = function (filo_options) {
 			var htmlData = $(this).data();
 			var options = $.extend({container:  value, facebookId: id}, filo_options, htmlData);
 
+			// convert id to string if it's a number
+			if (typeof options.facebookId === 'number') {
+				options.facebookId = options.facebookId.toString();
+			}
+
 			// add main class to container
 			$(this).addClass('filo');
 
