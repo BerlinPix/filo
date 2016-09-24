@@ -75,7 +75,7 @@ var addSpecificAlbums = function (data, options, uid, id) {
 
 	$.each(data, function (i2, album) {
 
-		var arr = albumInArray(album.name, options.albums);
+		var arr = albumInArray(album.name, options);
 
 		//not needed
 		if (!arr) {
