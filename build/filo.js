@@ -120,7 +120,8 @@ $.filo = function (filo_options) {
 		isLoaded: new Array(), //remeber loaded albums
 		
 		logging: false, //log errors to console if true
-		
+
+		match: false, // use a regex to find the album in collection
 		maxCount: 10, //max count of images in album
 		maxWidth: 90, //max width of overlay in percent
 		maxHeight: 90,//max height of overlay in percent
@@ -247,7 +248,7 @@ var addSpecificAlbums = function (data, options, uid, id) {
 
 	$.each(data, function (i2, album) {
 
-		var arr = albumInArray(album.name, options.albums);
+		var arr = albumInArray(album.name, options);
 
 		//not needed
 		if (!arr) {
@@ -750,12 +751,16 @@ var showOverlay = function (thumb, album, index, photos, path, options) {
 			//left -> prev image
 			case 37: 
 				index = prevImage(index, photos, options);
-				setUrlHash(options.facebookId, album.name, index);
+				if (options.setImageLink) {
+					setUrlHash(options.facebookId, album.name, index);
+				}
 				break;
 			//right -> next image
 			case 39:
 				index = nextImage(index, photos, options);
-				setUrlHash(options.facebookId, album.name, index);
+				if (options.setImageLink) {
+					setUrlHash(options.facebookId, album.name, index);
+				}
 				break;
 		}
 	});
@@ -1025,10 +1030,11 @@ var inArray = function (string, array) {
 	return false;
 }
 
-var albumInArray = function (albumName, array) {
+var albumInArray = function (albumName, options) {
 
 	var result = [],
-		regex = null;
+		regex = null,
+		array = options.albums;
 
 	for (var i = 0; i < array.length; i++) {
 		/*if (typeof array[i].name === 'string' && array[i].name.toLowerCase() === albumName.toLowerCase()) {
@@ -1045,7 +1051,10 @@ var albumInArray = function (albumName, array) {
 		}
 
 		//use regex
-		if (typeof array[i].name === 'string' && albumName.match(regex) !== null) {
+		if (array[i].match === true && typeof array[i].name === 'string' && albumName.match(regex) !== null) {
+			array[i].index = i;
+			result.push(array[i]);
+		} else if (typeof array[i].name === 'string' && albumName.toLowerCase() === array[i].name.toLowerCase()) {
 			array[i].index = i;
 			result.push(array[i]);
 		}

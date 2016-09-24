@@ -212,12 +212,16 @@ var showOverlay = function (thumb, album, index, photos, path, options) {
 			//left -> prev image
 			case 37: 
 				index = prevImage(index, photos, options);
-				setUrlHash(options.facebookId, album.name, index);
+				if (options.setImageLink) {
+					setUrlHash(options.facebookId, album.name, index);
+				}
 				break;
 			//right -> next image
 			case 39:
 				index = nextImage(index, photos, options);
-				setUrlHash(options.facebookId, album.name, index);
+				if (options.setImageLink) {
+					setUrlHash(options.facebookId, album.name, index);
+				}
 				break;
 		}
 	});

@@ -113,7 +113,8 @@ $.filo = function (filo_options) {
 		isLoaded: new Array(), //remeber loaded albums
 		
 		logging: false, //log errors to console if true
-		
+
+		match: false, // use a regex to find the album in collection
 		maxCount: 10, //max count of images in album
 		maxWidth: 90, //max width of overlay in percent
 		maxHeight: 90,//max height of overlay in percent

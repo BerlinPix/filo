@@ -98,10 +98,11 @@ var inArray = function (string, array) {
 	return false;
 }
 
-var albumInArray = function (albumName, array) {
+var albumInArray = function (albumName, options) {
 
 	var result = [],
-		regex = null;
+		regex = null,
+		array = options.albums;
 
 	for (var i = 0; i < array.length; i++) {
 		/*if (typeof array[i].name === 'string' && array[i].name.toLowerCase() === albumName.toLowerCase()) {
@@ -118,7 +119,10 @@ var albumInArray = function (albumName, array) {
 		}
 
 		//use regex
-		if (typeof array[i].name === 'string' && albumName.match(regex) !== null) {
+		if (array[i].match === true && typeof array[i].name === 'string' && albumName.match(regex) !== null) {
+			array[i].index = i;
+			result.push(array[i]);
+		} else if (typeof array[i].name === 'string' && albumName.toLowerCase() === array[i].name.toLowerCase()) {
 			array[i].index = i;
 			result.push(array[i]);
 		}
