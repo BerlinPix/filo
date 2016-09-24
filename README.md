@@ -99,6 +99,7 @@ container | String | body | Container where the albums should be added to
 excluded | Array of Strings | - | Don't load this albums
 hideTitle | Bool | false | Don't add title to album
 href | String | - | Forward user to given url instead of showing overlay
+match | Bool | false | Use album name as RegExp to match albums in collection. See the [example](examples/16-match-album-name.html) and [docs](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/String/match) for more information.
 maxCount | Number\|String | 10 | Max count of images in the albums. Can be set global or for each album. You can use any number or 'all' to get all the images from the album. 
 maxPreview | Number\|String | Infinity | Max count of thumbnails. Can be set global or for each album.
 maxWidth | Number | 90 | Max width of overlay image in percent
