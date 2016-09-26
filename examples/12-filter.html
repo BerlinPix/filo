@@ -17,7 +17,8 @@ $(function () {
 		albums: [
 			{
 				//load all albums with the string 'new' at start
-				name: 'new.*'
+				name: 'new.*',
+				match: true
 			}
 		],
 		maxCount: 4
@@ -33,8 +34,8 @@ $(function () {
 	<div id="js-filojs"></div>
 	<!-- html example -->	
 	<div class="filo" data-facebook-id="filojs" data-max-count="2">
-		<div class="filo__album" data-album-name="new.*" ></div>
-		<div class="filo__album" data-album-name="lost.*"></div>
+		<div class="filo__album" data-album-name="new.*" data-match="true"></div>
+		<div class="filo__album" data-album-name="lost.*" data-match="true"></div>
 	</div>
 </body>
 </html>
