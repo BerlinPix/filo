@@ -120,6 +120,7 @@ var getAlbumData = function (source, album, options , cb) {
 		limit: maxCount
 	};
 
+
 	// build GET string out of params
 	$.each(Object.keys(params), function (index, key) {
 		getString += (index === 0 ? '?' : '&') + key + '=' + params[key]
@@ -136,9 +137,14 @@ var getAlbumData = function (source, album, options , cb) {
 	load = function (url, cb) {
 		$.getJSON(url, function (response) {
 			if (maxCount > imagePerRequest  && response.paging && response.paging.next) {
-				load(response.paging.next, function (recursiveResponse) {
-					response.data = response.data.concat(recursiveResponse.data);
-					cb(null, response);
+				var nextUrl = options.accessToken ? response.paging.next : options.proxyUrl + response.paging.next.split('facebook.com/')[1];
+				load(nextUrl, function (err, recursiveResponse) {
+					if (err) {
+						cb(err);
+					} else {
+						response.data = response.data.concat(recursiveResponse.data);
+						cb(null, response);
+					}
 				});
 			}
 			else {
