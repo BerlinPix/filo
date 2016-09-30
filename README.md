@@ -1,10 +1,10 @@
-# FILo 2.1.0
+# filo.js
 
 http://www.berlinpix.com/filo - copyright &copy; 2016 Erik Wendt
 
 > If you want to support me than test filo.js and if you found any bugs [report them here](https://github.com/berlinpix/filo/issues). Feel free to ask for new features and I will add them if I can. I'm working on that in my free time and just for fun so please be patient with me.
 
-FILo is a lightweight jQuery plugin for embedding pictures from your [facebook page](https://www.facebook.com/pages/create.php) into your own website without necessarily writing JavaScript.
+Filo.js is a lightweight jQuery plugin for embedding pictures from your [facebook page](https://www.facebook.com/pages/create.php) into your own website without necessarily writing JavaScript.
 
 - only ~5KB minified and gzipped
 - no double content maintenance, just upload your photos once
@@ -68,11 +68,11 @@ Wrapping around the HTML5 structure, the scripts and css files:
   
 ## Facebook ID
 
-To use FILo you need a public [facebook page](https://www.facebook.com/pages/create/). Those pages have ID's which you have to use identify your page in the code. If you don't know your ID, find help here: [http://findmyfbid.com/](http://findmyfbid.com/)
+To use filo.js you need a public [facebook page](https://www.facebook.com/pages/create/). Those pages have ID's which you have to use identify your page in the code. If you don't know your ID, find help here: [http://findmyfbid.com/](http://findmyfbid.com/)
 
 ## Proxy Service
 
-I've created a service called [filo-proxy](https://github.com/BerlinPix/filo-proxy). Filo.js is using this proxy instead of making the requests directly to Facebook. The reason for that [I've documented here](https://github.com/BerlinPix/filo-proxy#why).
+I've created a service called [filo-proxy](https://github.com/BerlinPix/filo-proxy). filo.js is using this proxy instead of making the requests directly to Facebook. The reason for that [I've documented here](https://github.com/BerlinPix/filo-proxy#why).
 
 If you don't want that you have 2 possibilities:
 
@@ -109,8 +109,8 @@ newWindow | Bool | false | Open a new tab on click by user forwarding
 order | String | normal | Order in which the photos should be added (normal, reverse, random)
 proxyUrl | String | https://bpx.gacrux.uberspace.de/filo-proxy/ | Use this URL to do the requests instead of requesting facebook.com. See [filo-proxy](https://github.com/BerlinPix/filo).
 template | Number | 1 | Design template which should be used
-thumbWidth | Number | 300 | Max width of the thumbnails. FILo tries to get the value **out of the CSS**. With this property you can overwrite the css settings.
-thumbHeight | Numbr | 500 | Max height of the thumbnails. FILo tries to get the value **out of the CSS**. With this property you can overwrite the css settings.
+thumbWidth | Number | 300 | Max width of the thumbnails. filo.js tries to get the value **out of the CSS**. With this property you can overwrite the css settings.
+thumbHeight | Numbr | 500 | Max height of the thumbnails. filo.js tries to get the value **out of the CSS**. With this property you can overwrite the css settings.
 titleTag |  String | h3 | Tag which is used for the album title
 
 ## Bugs and Feedback
