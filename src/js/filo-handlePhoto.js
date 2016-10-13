@@ -67,6 +67,12 @@ var handlePhoto = function (facebookID, album, albumID, photo, photos, options, 
 
 	if (index < maxPreview) {
 		$(a).append('<i style="background-image:url('+picture.source+');" ></i>');
+	} else {
+		// use hidden instead of display:none because of event handlers
+		$(a).css({
+			visibility: 'hidden',
+			position: 'absolute'
+		});
 	}
 }
 
