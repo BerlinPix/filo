@@ -117,5 +117,33 @@ titleTag |  String | h3 | Tag which is used for the album title
 
 If you found any bugs please [report them here](https://github.com/berlinpix/filo/issues) so that everybody can follow. Please add the browser (+ version) and the OS you have used for a better debugging.
  
+## Updates
+
+**Latest**
+
+- bug fixing: show more than 100 photos in one album
+
+**Version 2.1.2**
+
+- new feature [match](https://github.com/BerlinPix/filo/blob/master/examples/16-match-album-name.html)
+- bug fixing: Facebook ID as number #11
+
+**Version 2.1.1**
+
+- new feature [setImageLink](https://github.com/BerlinPix/filo/blob/master/examples/15-set-image-link.html)
+
+**Version 2.1.0**
+
+- implement proxy service using [filo-proxy](https://github.com/BerlinPix/filo#proxy-service)
+- new feature "proxyUrl"
+- new feature [maxPreview](https://github.com/BerlinPix/filo/blob/master/examples/14-api-max-preview.html)
+- handle [paging](https://developers.facebook.com/docs/graph-api/using-graph-api/#paging) with Facebook requests
+- bug fixing
+
+**Version 2.0.0**
+
+- rewrite filo.js with Facebook Graph API instead of FQL.
+ 
+ 
 Copyright &copy; 2016, [berlinpix.com](http://www.berlinpix.com)
 licensed under the LGPL license.
