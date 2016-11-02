@@ -109,13 +109,14 @@ var addSpecificAlbums = function (data, options, uid, id) {
 			var title = options.hideTitle === true || options.addAsPhotoStream === true ? '' : '<'+options.titleTag+' class="filo__album__title">'+titleText+'</'+options.titleTag+'>';
 			var albumContainer = $('<div id="'+albumID+'" class="filo__album'+template+'">'+title+'<div class="filo__album__thumbs"></div></div>');
 			var ac = null;
-			
+
 			//add new album to keep the order from HTML
 			if (hasAlbumsInHtml) {
-				ac = getAlbumContainer(selector, album);
+				ac = getAlbumContainer(selector, album, albumOptions);
 				$(ac).after(albumContainer);//.remove();
 				toRemove.push(ac);
 			}
+			
 			//keep order from array
 			else {
 				//if origin index is > then current amount if albums just append
@@ -150,7 +151,7 @@ var removeAlbums = function (toRemove) {
 }
 
 /* Get one specific album container from DOM */
-var getAlbumContainer = function (selector, album) {
+var getAlbumContainer = function (selector, album, options) {
 	var ac = null,
 		regex = null;
 
@@ -163,12 +164,16 @@ var getAlbumContainer = function (selector, album) {
 			return;
 		}
 
-		if (typeof $(value).attr('data-album-name') !== 'undefined' && album.name.match(regex) !== null) {
+		if (options.match && typeof $(value).attr('data-album-name') !== 'undefined' && album.name.match(regex) !== null) {
+			ac = value;
+			return false;
+		} else if (typeof $(value).attr('data-album-name') !== 'undefined' && album.name.toLowerCase() === $(value).attr('data-album-name').toLocaleLowerCase()) {
 			ac = value;
 			return false;
 		}
 		
 	});
+
 	return ac;
 }
 
