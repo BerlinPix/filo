@@ -121,7 +121,9 @@ If you found any bugs please [report them here](https://github.com/berlinpix/fil
 
 **Latest**
 
-- bug fixing: show more than 100 photos in one album
+- bug fixing: 
+    - show more than 100 photos in one album
+    - album order #19
 
 **Version 2.1.2**
 
